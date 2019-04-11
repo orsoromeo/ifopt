@@ -82,6 +82,8 @@ Problem::GetVariableValues () const
 void
 Problem::SetVariables (const double* x)
 {
+  Eigen::VectorXd sol = ConvertToEigen(x);
+  std::cout<<sol<<std::endl;
   variables_->SetVariables(ConvertToEigen(x));
 }
 
