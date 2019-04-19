@@ -66,9 +66,13 @@ ConstraintSet::GetJacobian () const
 
     // create triplets for the derivative at the correct position in the overall Jacobian
     for (int k=0; k<jac.outerSize(); ++k)
-      for (Jacobian::InnerIterator it(jac,k); it; ++it)
-        triplet_list.push_back(Eigen::Triplet<double>(it.row(), col+it.col(), it.value()));
-    col += n;
+     {
+       for (Jacobian::InnerIterator it(jac,k); it; ++it)
+        {
+         triplet_list.push_back(Eigen::Triplet<double>(it.row(), col+it.col(), it.value()));
+        }
+     }
+        col += n;
   }
 
   // transform triplet vector into sparse matrix
